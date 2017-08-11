@@ -35,8 +35,8 @@ import {GadgetService} from '../common/services/gadget.service.ts'
   directives: [ItemsList, ItemDetail]
 })
 export class Items {
-  items: Observable<Array<Item>>;
-  selectedItem: Observable<Item>;
+  items: Observable<{}>;
+  selectedItem: Observable<{}>;
   gadget: Observable<Gadget>;
 
   constructor(private itemsService: ItemsService,
