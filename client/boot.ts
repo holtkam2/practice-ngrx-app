@@ -6,7 +6,7 @@ import {StoreLogMonitorModule, useLogMonitor} from '@ngrx/store-log-monitor';
 import {items} from './src/common/stores/items.store';
 import {selectedItem} from './src/common/stores/selectedItem.store';
 import {selectedWidget} from './src/common/stores/selectedWidget.store';
-
+import {analytics} from './src/common/stores/analytics.store';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -26,7 +26,7 @@ import {routes} from './routes';
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    StoreModule.provideStore({items, selectedItem, selectedWidget}),
+    StoreModule.provideStore({items, selectedItem, selectedWidget, analytics}),
     StoreDevtoolsModule.instrumentStore({
       monitor: useLogMonitor({
         visible: false,

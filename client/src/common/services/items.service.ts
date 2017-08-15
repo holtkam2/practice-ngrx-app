@@ -45,4 +45,8 @@ export class ItemsService {
     this.http.delete(`${BASE_URL}${item.id}`)
       .subscribe(action => this.store.dispatch({ type: 'DELETE_ITEM', payload: item }));
   }
+
+  analyticsClick() {
+    this.store.dispatch({type: 'CLICK', payload: {}});
+  }
 }
