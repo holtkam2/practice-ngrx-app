@@ -4,6 +4,7 @@ import {Item} from '../common/models/item.model';
 @Component({
   selector: 'item-detail',
   template: `
+    
   <div class="fem-card mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
       <h2 class="mdl-card__title-text" *ngIf="selectedItem.id">Editing {{originalName}}</h2>
@@ -35,7 +36,7 @@ import {Item} from '../common/models/item.model';
           class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
     </div>
   </div>
-  <h2>button clicks: {{analytics.clicks}}</h2>
+    
   `
 })
 export class ItemDetail {
@@ -45,7 +46,6 @@ export class ItemDetail {
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
-  @Input() analytics;
   @Input() set item(value: Item){
     if (value) this.originalName = value.name;
     this.selectedItem = Object.assign({}, value);

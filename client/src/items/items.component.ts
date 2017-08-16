@@ -12,6 +12,7 @@ import {GadgetService} from '../common/services/gadget.service.ts'
 @Component({
   selector: 'items',
   template: `
+    
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
       <items-list 
@@ -21,12 +22,11 @@ import {GadgetService} from '../common/services/gadget.service.ts'
     </div>
     <div class="mdl-cell mdl-cell--6-col">
       <item-detail
-        [analytics]="analytics | async"
         (saved)="saveItem($event)" (cancelled)="resetItem($event)"
         [item]="selectedItem | async">Select an Item</item-detail>
     </div>
-    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="analyticsClick()">click me</button>
   </div>
+    
   `,
   styles: [`
     .items {
@@ -40,16 +40,13 @@ export class Items {
   items: Observable<{}>;
   selectedItem: Observable<{}>;
   gadget: Observable<Gadget>;
-  analytics: Observable<{}>;
 
   constructor(private itemsService: ItemsService,
               private gadgetService: GadgetService,
               private store: Store<AppStore>)
   {
     this.items = itemsService.items;
-    this.analytics = itemsService.analytics;
     this.selectedItem = store.select('selectedItem');
-    this.selectedItem.subscribe(v => console.log(v));
     this.gadget = gadgetService.gadget;
     itemsService.loadItems();
   }
@@ -73,7 +70,4 @@ export class Items {
     this.resetItem();
   }
 
-  analyticsClick() {
-    this.itemsService.analyticsClick();
-  }
 }
