@@ -35,14 +35,17 @@ import {Item} from '../common/models/item.model';
           class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
     </div>
   </div>
+  <h2>button clicks: {{analytics.clicks}}</h2>
   `
 })
 export class ItemDetail {
   originalName: string;
   selectedItem: Item;
+
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
 
+  @Input() analytics;
   @Input() set item(value: Item){
     if (value) this.originalName = value.name;
     this.selectedItem = Object.assign({}, value);

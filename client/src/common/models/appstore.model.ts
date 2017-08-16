@@ -6,4 +6,5 @@ export interface AppStore {
   selectedItem: Item;
   widgets: Widget[];
   selectedWidget: Widget;
+  analytics: any;
 };

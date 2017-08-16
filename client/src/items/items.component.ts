@@ -14,16 +14,18 @@ import {GadgetService} from '../common/services/gadget.service.ts'
   template: `
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
-      <items-list [items]="items | async"
+      <items-list 
+        [items]="items | async"
         (selected)="selectItem($event)" (deleted)="deleteItem($event)">
       </items-list>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
       <item-detail
+        [analytics]="analytics | async"
         (saved)="saveItem($event)" (cancelled)="resetItem($event)"
         [item]="selectedItem | async">Select an Item</item-detail>
     </div>
-    <button (click)="analyticsClick()">click me</button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="analyticsClick()">click me</button>
   </div>
   `,
   styles: [`
@@ -38,12 +40,14 @@ export class Items {
   items: Observable<{}>;
   selectedItem: Observable<{}>;
   gadget: Observable<Gadget>;
+  analytics: Observable<{}>;
 
   constructor(private itemsService: ItemsService,
               private gadgetService: GadgetService,
               private store: Store<AppStore>)
   {
     this.items = itemsService.items;
+    this.analytics = itemsService.analytics;
     this.selectedItem = store.select('selectedItem');
     this.selectedItem.subscribe(v => console.log(v));
     this.gadget = gadgetService.gadget;

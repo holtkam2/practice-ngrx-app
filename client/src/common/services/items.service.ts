@@ -13,9 +13,11 @@ const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 @Injectable()
 export class ItemsService {
   items: Observable<{}>;
+  analytics: Observable<{}>;
 
   constructor(private http: Http, private store: Store<AppStore>) {
     this.items = store.select('items');
+    this.analytics = store.select('analytics');
   }
 
   loadItems() {
